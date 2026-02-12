@@ -104,6 +104,10 @@
                     </svg>
                     <span class="font-serif text-2xl font-bold text-[#5A4F46]">The Crafted Knot</span>
                 </div>
+                <nav class="hidden md:flex space-x-8">
+                        <button onclick="switchPage('home')" id="nav-home" class="nav-link text-gray-600 hover:text-[#8C7B70] font-medium transition active">Designs</button>
+                        <button onclick="switchPage('track')" id="nav-track" class="nav-link text-gray-600 hover:text-[#8C7B70] font-medium transition">Track Order</button>
+                </nav>
             </div>
         </div>
     </header>
@@ -176,6 +180,54 @@
                 </div>
             </section>
         </div>
+        <!-- ==================== TRACK VIEW ==================== -->
+            <div id="view-track" class="page-view hidden max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div class="text-center mb-10">
+                    <h1 class="text-3xl md:text-4xl font-serif text-[#5A4F46] mb-4">Order Tracking</h1>
+                    <p class="text-gray-500">Monitor the progress of your bespoke furniture in real-time.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-md border border-gray-100">
+                    <div class="mb-8">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Order Reference ID</label>
+                        <div class="flex gap-3">
+                            <input type="text" id="orderIdInput" class="custom-input flex-grow rounded-lg px-4 py-3" placeholder="#WOOD-XXXX">
+                            <button onclick="trackOrder()" class="bg-[#9CA99C] hover:bg-[#869486] text-white font-bold py-3 px-8 rounded-lg transition duration-200 shadow-sm">
+                                Track
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Tracking Result Area -->
+                    <div id="tracking-result" class="hidden border-t border-gray-100 pt-8">
+                        <div class="bg-[#F9F7F2] p-6 rounded-xl border border-[#E3E9E2]">
+                            <div class="flex items-center mb-4">
+                                <div class="h-4 w-4 rounded-full bg-green-500 mr-3 animate-pulse"></div>
+                                <span class="font-bold text-xl text-gray-800" id="status-title">Assembly Phase</span>
+                            </div>
+                            <p class="text-gray-600 mb-6" id="status-desc">Your item has been cut and is currently being assembled by our master joiner, Sarah. Expected completion: 2 days.</p>
+                            
+                            <!-- Progress Bar -->
+                            <div class="relative pt-6 pb-2">
+                                <div class="overflow-hidden h-3 mb-4 text-xs flex rounded bg-gray-200">
+                                    <div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-[#8C7B70] transition-all duration-1000" style="width: 65%"></div>
+                                </div>
+                                <div class="flex justify-between text-xs font-medium text-gray-500">
+                                    <span class="text-[#8C7B70]">Preparation</span>
+                                    <span class="text-[#8C7B70]">Cutting</span>
+                                    <span class="text-[#8C7B70] font-bold">Assembly</span>
+                                    <span>Finishing</span>
+                                    <span>Delivery</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 flex justify-center">
+                            <p class="text-xs text-gray-400">Last updated: Just now</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </main>
     <footer class="bg-[#5A4F46] text-[#DBC1AC] py-12 mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -195,5 +247,33 @@
             </div>
         </div>
     </footer>
+    <script>
+        const apiKey = ""; // API Key provided by environment
+
+        // SPA Navigation Logic
+        function switchPage(pageId) {
+            // Hide all views
+            const views = document.querySelectorAll('.page-view');
+            views.forEach(view => view.classList.add('hidden'));
+
+            // Show selected view
+            const selectedView = document.getElementById(`view-${pageId}`);
+            if (selectedView) {
+                selectedView.classList.remove('hidden');
+            }
+
+            // Update Navigation Active State
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            const activeNav = document.getElementById(`nav-${pageId}`);
+            if (activeNav) {
+                activeNav.classList.add('active');
+            }
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+    </script>
 </body>
 </html>    
