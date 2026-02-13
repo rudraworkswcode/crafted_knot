@@ -396,6 +396,17 @@
             // Scroll to top
             window.scrollTo(0, 0);
         }
+        function trackOrder() {
+                const input = document.getElementById('orderIdInput').value;
+                const resultDiv = document.getElementById('tracking-result');
+                
+                if(input.length > 3) {
+                    // Mock logic for demo purposes
+                    resultDiv.classList.remove('hidden');
+                } else {
+                    alert("Please enter a valid Order ID (e.g. WOOD-123)");
+                }
+        }
     </script>
 </body>
 </html>    
