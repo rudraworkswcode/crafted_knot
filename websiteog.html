@@ -349,7 +349,39 @@
                         </div>
                     </div>
                 </div>
-            </div>4
+            </div>
+        <!-- ==================== ABOUT US VIEW ==================== -->
+            <div id="view-about" class="page-view hidden">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                    <div class="text-center mb-16">
+                        <h1 class="text-3xl md:text-4xl font-serif text-[#5A4F46] mb-4">Our Story</h1>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row items-center gap-12 mb-20">
+                        <div class="md:w-2/3">
+                            <h2 class="text-2xl font-serif text-[#5A4F46] mb-6">The Human Element</h2>
+                            <p class="text-gray-600 leading-relaxed mb-6">
+                                Over the last six years, Sri Sai Wood Carving Works has evolved from a small local unit into a hub of artisanal excellence. Our journey is defined not just by the wood we shape, but by the hands that shape it. 
+                            </p>
+                            <p class="text-gray-600 leading-relaxed">
+                                We believe in transparently celebrating our process. Behind every finished piece are our master artisans—hands often covered in sawdust, wielding chisels with focused intensity and a dedication that machines cannot replicate. We are not a faceless entity, but a team of craftsmen deeply committed to the integrity of our trade.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row items-center gap-12">
+                        <div class="md:w-2/3">
+                            <h2 class="text-2xl font-serif text-[#5A4F46] mb-6">Precision & Tradition</h2>
+                            <p class="text-gray-600 leading-relaxed mb-6">
+                                While we honour tradition, we also embrace the future. Our workshop represents a duality of workflow where time-honoured skills meet modern technology.
+                            </p>
+                            <p class="text-gray-600 leading-relaxed">
+                                Alongside our manual tools, we operate advanced CNC machinery. This juxtaposition allows us to achieve unparalleled precision where it counts, ensuring structural integrity without losing the soul of the handcrafted. It is this balance of the human touch and mechanical accuracy that builds trust and delivers furniture of lasting value.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </main>
     <footer class="bg-[#5A4F46] text-[#DBC1AC] py-12 mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -396,6 +428,7 @@
             // Scroll to top
             window.scrollTo(0, 0);
         }
+
         function trackOrder() {
                 const input = document.getElementById('orderIdInput').value;
                 const resultDiv = document.getElementById('tracking-result');
