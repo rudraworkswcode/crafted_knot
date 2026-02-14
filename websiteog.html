@@ -107,6 +107,7 @@
                 <nav class="hidden md:flex space-x-8">
                         <button onclick="switchPage('home')" id="nav-home" class="nav-link text-gray-600 hover:text-[#8C7B70] font-medium transition active">Designs</button>
                         <button onclick="switchPage('materials')" id="nav-materials" class="nav-link text-gray-600 hover:text-[#8C7B70] font-medium transition">Materials</button>
+                        <button onclick="switchPage('quote')" id="nav-quote" class="nav-link text-gray-600 hover:text-[#8C7B70] font-medium transition">Get Quote</button>
                         <button onclick="switchPage('track')" id="nav-track" class="nav-link text-gray-600 hover:text-[#8C7B70] font-medium transition">Track Order</button>
                         <button onclick="switchPage('about')" id="nav-about" class="nav-link text-gray-600 hover:text-[#8C7B70] font-medium transition">About Us</button>
                 </nav>
@@ -356,6 +357,7 @@
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                     <div class="text-center mb-16">
                         <h1 class="text-3xl md:text-4xl font-serif text-[#5A4F46] mb-4">Our Story</h1>
+                        <p class="text-lg text-gray-500 max-w-2xl mx-auto">From a modest workshop to a hallmark of artisanal excellence.</p>
                     </div>
 
                     <div class="flex flex-col md:flex-row items-center gap-12 mb-20">
@@ -367,15 +369,15 @@
                             <p class="text-gray-600 leading-relaxed">
                                 We believe in transparently celebrating our process. Behind every finished piece are our master artisans—hands often covered in sawdust, wielding chisels with focused intensity and a dedication that machines cannot replicate. We are not a faceless entity, but a team of craftsmen deeply committed to the integrity of our trade.
                             </p>
+                        </div>
                         <div class="md:w-1/3">
                             <div class="rounded-xl overflow-hidden shadow-lg transform rotate-2 hover:rotate-0 transition duration-500">
                                 <img src="https://images.unsplash.com/photo-1606077089838-0ac4a27fc96f?q=80&w=678&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Master artisan carving wood" class="w-full h-auto object-cover">
                             </div>
                         </div>
-                        </div>
                     </div>
 
-                    <div class="flex flex-col md:flex-row items-center gap-12">
+                    <div class="flex flex-col md:flex-row-reverse items-center gap-12">
                         <div class="md:w-2/3">
                             <h2 class="text-2xl font-serif text-[#5A4F46] mb-6">Precision & Tradition</h2>
                             <p class="text-gray-600 leading-relaxed mb-6">
@@ -384,12 +386,104 @@
                             <p class="text-gray-600 leading-relaxed">
                                 Alongside our manual tools, we operate advanced CNC machinery. This juxtaposition allows us to achieve unparalleled precision where it counts, ensuring structural integrity without losing the soul of the handcrafted. It is this balance of the human touch and mechanical accuracy that builds trust and delivers furniture of lasting value.
                             </p>
+                        </div>
                         <div class="md:w-1/3">
                             <div class="rounded-xl overflow-hidden shadow-lg transform -rotate-2 hover:rotate-0 transition duration-500">
                                 <img src="https://plus.unsplash.com/premium_photo-1674331357387-b88186921582?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="CNC Machinery in workshop" class="w-full h-auto object-cover">
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ==================== QUOTE VIEW ==================== -->
+            <div id="view-quote" class="page-view hidden max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div class="text-center mb-10">
+                    <h1 class="text-3xl md:text-4xl font-serif text-[#5A4F46] mb-4">Request a Quotation</h1>
+                    <p class="text-gray-500">Design your dream furniture or customise our existing catalog items.</p>
+                </div>
+
+                <div class="bg-[#F2EFE9] rounded-2xl p-8 border border-[#E6E0D6] shadow-md">
+                    <form class="space-y-6" onsubmit="event.preventDefault(); submitQuote();">
+                        
+                        <!-- AI Design Studio -->
+                        <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                            <div class="flex items-center gap-2 mb-3">
+                                <div class="p-2 bg-purple-100 rounded-lg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                    </svg>
+                                </div>
+                                <h3 class="font-bold text-gray-800">AI 3D Design Studio</h3>
+                            </div>
+                            <p class="text-sm text-gray-500 mb-4">Not sure exactly what you want? Describe your idea (e.g., "A modern round coffee table with three curved legs in walnut wood") and visualize it instantly.</p>
+                            
+                            <div class="flex gap-3">
+                                <input type="text" id="ai-prompt" class="custom-input flex-grow rounded-lg px-4 py-3 text-sm" placeholder="Describe your dream furniture...">
+                                <button type="button" onclick="generateAIPreview()" class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg text-sm font-bold transition flex items-center gap-2 whitespace-nowrap shadow-sm">
+                                    <span id="ai-btn-text">Generate 3D</span>
+                                </button>
+                            </div>
+
+                            <!-- Preview Area -->
+                            <div id="ai-preview-container" class="mt-6 hidden">
+                                <div class="ai-preview-box w-full h-64 rounded-lg flex items-center justify-center border border-gray-200 overflow-hidden relative">
+                                    <img id="ai-result-image" src="" alt="AI Generated Design" class="w-full h-full object-contain hidden">
+                                    <div id="ai-loading" class="hidden flex flex-col items-center">
+                                        <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-purple-600 mb-3"></div>
+                                        <span class="text-sm text-purple-600 font-medium">Creating your design...</span>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-gray-400 mt-2 text-center">Generated by Gemini AI. For visualisation purposes only.</p>
+                            </div>
                         </div>
+                        <!-- End AI Studio -->
+
+                        <div class="border-t border-gray-200 pt-6"></div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Select Design Base</label>
+                            <select class="custom-input w-full rounded-lg px-4 py-3">
+                                <option>Custom Project (See AI Design above)</option>
+                                <option>Nordic Oak Chair</option>
+                                <option>Artisan Coffee Table</option>
+                                <option>Heritage Teak Door</option>
+                            </select>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Wood Type</label>
+                                <select class="custom-input w-full rounded-lg px-4 py-3">
+                                    <option>Oak (Standard)</option>
+                                    <option>Teak (Durable)</option>
+                                    <option>Pine (Budget)</option>
+                                    <option>Rosewood (Premium)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Finish</label>
+                                <select class="custom-input w-full rounded-lg px-4 py-3">
+                                    <option>Matte Oil</option>
+                                    <option>Satin Varnish</option>
+                                    <option>High Gloss</option>
+                                    <option>Raw/Unfinished</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Special Requests / Dimensions</label>
+                            <textarea class="custom-input w-full rounded-lg px-4 py-3" rows="4" placeholder="e.g. Height 7ft, Width 3ft for Door. Prefer rounded edges."></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-[#8C7B70] hover:bg-[#75665c] text-white font-bold py-4 px-6 rounded-lg transition duration-200 shadow-md transform hover:-translate-y-0.5">
+                            Get Estimated Price
+                        </button>
+                    </form>
+                    <!-- Success Message (Hidden by default) -->
+                    <div id="quote-success" class="hidden mt-6 p-4 bg-green-50 text-green-700 rounded-lg text-sm border border-green-100 flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        Request received! We will email your detailed quotation within 2 hours.
                     </div>
                 </div>
             </div>
